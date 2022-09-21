@@ -1,7 +1,7 @@
 from playwright.sync_api import sync_playwright
 import datetime
 
-tableRow = 98
+tableRow = 1
 fim = 1
 
 
@@ -49,10 +49,12 @@ with sync_playwright() as p:
             ufEmit = pageBling.input_value("select[id=cte_emit_UF]")
             ufRem = pageBling.input_value("select[id=cte_rem_UF]")
             cfop = pageBling.input_value("input[id='cte_CFOP']")
-            if (ufEmit == "ES" and ufRem == "ES" and cfop != "1354"):
-                pageBling.ill("input[id='cte_CFOP']", "1354")
+            if (ufEmit == "ES" and ufRem == "ES" and cfop != "1353"):
+                pageBling.fill("input[id='cte_CFOP']", "1353")
                 pageBling.click("button[id='botaoCancelar']")
                 tableRow += 1
+            elif (cfop == "1353"):
+                pageBling.close()
         pageBling.wait_for_timeout(2000)
         pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
         tableRow = 98
