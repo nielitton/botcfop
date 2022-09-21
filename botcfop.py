@@ -1,6 +1,33 @@
 from playwright.sync_api import sync_playwright
+import datetime
+
 tableRow = 98
 fim = 1
+
+
+# Para pegar os arquivos do arquivei no futuro
+# today = datetime.date.today()
+# hoje = today.strftime("%d%m%y")
+# lastDate = "150922"
+# pageArquivei = browser.new_page()
+#     pageArquivei.goto("https://app.arquivei.com.br/cte/list")
+#     pageArquivei.fill("input[name='email']", "sac@maxcoatacado.com.br")
+#     pageArquivei.wait_for_timeout(2000)
+#     pageArquivei.fill("input[name='password']", "ce220281")
+#     pageArquivei.wait_for_timeout(2000)
+#     pageArquivei.click("button[name='login']")
+#     pageArquivei.wait_for_timeout(2000)
+#     pageArquivei.fill("input[id='createdStart']", lastDate)
+#     pageArquivei.wait_for_timeout(2000)
+#     pageArquivei.fill("input[id='createdEnd']", hoje)
+#     pageArquivei.wait_for_timeout(2000)
+#     pageArquivei.click("div[class='Select-value']")
+#     pageArquivei.wait_for_timeout(2000)
+#     pageArquivei.mouse.click(x=550, y=310)
+#     pageArquivei.wait_for_timeout(2000)
+#     pageArquivei.click("button[class='btn-sm']")
+#     pageArquivei.wait_for_timeout(50000)
+
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
@@ -23,7 +50,7 @@ with sync_playwright() as p:
             ufRem = pageBling.input_value("select[id=cte_rem_UF]")
             cfop = pageBling.input_value("input[id='cte_CFOP']")
             if (ufEmit == "ES" and ufRem == "ES" and cfop != "1354"):
-                pageBling.fill("input[id='cte_CFOP']", "1354")
+                pageBling.ill("input[id='cte_CFOP']", "1354")
                 pageBling.click("button[id='botaoCancelar']")
                 tableRow += 1
         pageBling.wait_for_timeout(2000)
