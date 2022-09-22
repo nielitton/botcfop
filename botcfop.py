@@ -34,13 +34,13 @@ with sync_playwright() as p:
     pageBling = browser.new_page()
     pageBling.goto('https://www.bling.com.br/ctes.php#list')
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='username']", "******@*****atacado.com.br")
+    pageBling.fill("input[id='username']", "*******@*******.com.br")
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='senha']", "**************")
+    pageBling.fill("input[id='senha']", "**********")
     pageBling.wait_for_timeout(2000)
     pageBling.click("button[name='enviar']")
     pageBling.wait_for_timeout(2000)
-    while (final <= 5):
+    while (final == 5):
         while (tableRow <= 100):
             pageBling.locator(f"xpath=/html/body/div[5]/div[4]/div[2]/div[2]/table/tbody/tr[{tableRow}]/td[2]").click()
             pageBling.wait_for_timeout(2000)
@@ -65,3 +65,6 @@ with sync_playwright() as p:
         pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
         tableRow = 1
         pageBling.wait_for_timeout(2000)
+
+    # finalizando quando ele encontrar 5 CFOP's corretos
+    pageBling.close()
