@@ -1,7 +1,6 @@
 from playwright.sync_api import sync_playwright
-import datetime
 
-tableRow = 1
+tableRow = 14
 fim = 1
 
 
@@ -40,7 +39,8 @@ with sync_playwright() as p:
     pageBling.wait_for_timeout(2000)
     pageBling.click("button[name='enviar']")
     pageBling.wait_for_timeout(2000)
-    pageBling.locator("//html/body/div[4]/div[1]/div/i").click()
+    pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
+    pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
     pageBling.wait_for_timeout(2000)
     while (fim <= 100):
         while (tableRow <= 100):
@@ -49,19 +49,17 @@ with sync_playwright() as p:
             ufEmit = pageBling.input_value("select[id=cte_emit_UF]")
             ufRem = pageBling.input_value("select[id=cte_rem_UF]")
             cfop = pageBling.input_value("input[id='cte_CFOP']")
-            if (ufEmit == "ES" and ufRem == "ES" and cfop != "1354"):
-                pageBling.fill("input[id='cte_CFOP']", "1354")
+            if (ufEmit == "ES" and ufRem == "ES" and cfop != "1353"):
+                pageBling.fill("input[id='cte_CFOP']", "1353")
                 pageBling.wait_for_timeout(2000)
                 pageBling.click("button[id='botaoSalvar']")
                 tableRow += 1
-            elif (ufEmit != "ES" and ufRem != "ES" and cfop != "2354"):
-                pageBling.fill("input[id='cte_CFOP']", "2354")
+            elif (ufEmit != "ES" or ufRem != "ES"):
+                pageBling.fill("input[id='cte_CFOP']", "2353")
                 pageBling.wait_for_timeout(2000)
                 pageBling.click("button[id='botaoSalvar']")
                 pageBling.wait_for_timeout(2000)
                 tableRow += 1
-            elif (cfop == "1353"):
-                pageBling.close()
         pageBling.wait_for_timeout(2000)
         pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
         tableRow = 1
