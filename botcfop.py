@@ -1,6 +1,6 @@
 from playwright.sync_api import sync_playwright
 
-tableRow = 14
+tableRow = 1
 fim = 1
 
 
@@ -33,14 +33,11 @@ with sync_playwright() as p:
     pageBling = browser.new_page()
     pageBling.goto('https://www.bling.com.br/ctes.php#list')
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='username']", "nieliton@maxcoatacado.com.br")
+    pageBling.fill("input[id='username']", "******")
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='senha']", "Psfm1234@")
+    pageBling.fill("input[id='senha']", "******")
     pageBling.wait_for_timeout(2000)
     pageBling.click("button[name='enviar']")
-    pageBling.wait_for_timeout(2000)
-    pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
-    pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
     pageBling.wait_for_timeout(2000)
     while (fim <= 100):
         while (tableRow <= 100):
