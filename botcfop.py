@@ -5,29 +5,7 @@ fim = 1
 final = 0
 
 
-# Para pegar os arquivos do arquivei no futuro
-# today = datetime.date.today()
-# hoje = today.strftime("%d%m%y")
-# lastDate = "150922"
-# pageArquivei = browser.new_page()
-#     pageArquivei.goto("https://app.arquivei.com.br/cte/list")
-#     pageArquivei.fill("input[name='email']", "sac@maxcoatacado.com.br")
-#     pageArquivei.wait_for_timeout(2000)
-#     pageArquivei.fill("input[name='password']", "ce220281")
-#     pageArquivei.wait_for_timeout(2000)
-#     pageArquivei.click("button[name='login']")
-#     pageArquivei.wait_for_timeout(2000)
-#     pageArquivei.fill("input[id='createdStart']", lastDate)
-#     pageArquivei.wait_for_timeout(2000)
-#     pageArquivei.fill("input[id='createdEnd']", hoje)
-#     pageArquivei.wait_for_timeout(2000)
-#     pageArquivei.click("div[class='Select-value']")
-#     pageArquivei.wait_for_timeout(2000)
-#     pageArquivei.mouse.click(x=550, y=310)
-#     pageArquivei.wait_for_timeout(2000)
-#     pageArquivei.click("button[class='btn-sm']")
-#     pageArquivei.wait_for_timeout(50000)
-
+# Ideia para o futuro é pegar automaticamente o arquivo no arquivei
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
