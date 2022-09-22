@@ -34,13 +34,13 @@ with sync_playwright() as p:
     pageBling = browser.new_page()
     pageBling.goto('https://www.bling.com.br/ctes.php#list')
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='username']", "*******@*******.com.br")
+    pageBling.fill("input[id='username']", "nieliton@maxcoatacado.com.br")
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='senha']", "**********")
+    pageBling.fill("input[id='senha']", "Psfm1234@")
     pageBling.wait_for_timeout(2000)
     pageBling.click("button[name='enviar']")
     pageBling.wait_for_timeout(2000)
-    while (final == 5):
+    while (final < 11):
         while (tableRow <= 100):
             pageBling.locator(f"xpath=/html/body/div[5]/div[4]/div[2]/div[2]/table/tbody/tr[{tableRow}]/td[2]").click()
             pageBling.wait_for_timeout(2000)
@@ -48,23 +48,31 @@ with sync_playwright() as p:
             ufRem = pageBling.input_value("select[id=cte_rem_UF]")
             cfop = pageBling.input_value("input[id='cte_CFOP']")
             if (ufEmit == "ES" and ufRem == "ES" and cfop != "1353"):
+                final = 0
                 pageBling.fill("input[id='cte_CFOP']", "1353")
                 pageBling.wait_for_timeout(2000)
                 pageBling.click("button[id='botaoSalvar']")
                 tableRow += 1
             elif (ufEmit != "ES" or ufRem != "ES"):
+                final = 0
                 pageBling.fill("input[id='cte_CFOP']", "2353")
                 pageBling.wait_for_timeout(2000)
                 pageBling.click("button[id='botaoSalvar']")
                 pageBling.wait_for_timeout(2000)
                 tableRow += 1
-            elif (cfop == "2353" or cfop == "1553"):
+            else:
                 final += 1
+                pageBling.click("button[id='botaoCancelar']")
+                pageBling.wait_for_timeout(2000)
                 tableRow += 1
+                if(final == 10):
+                    break
+                print(final)
         pageBling.wait_for_timeout(2000)
         pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
         tableRow = 1
         pageBling.wait_for_timeout(2000)
-
+        
     # finalizando quando ele encontrar 5 CFOP's corretos
+    pageBling.wait_for_timeout(2000)
     pageBling.close()
