@@ -12,15 +12,27 @@ with sync_playwright() as p:
     pageBling = browser.new_page()
     pageBling.goto('https://www.bling.com.br/ctes.php#list')
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='username']", "*****************.com.br")
+    pageBling.fill("input[id='username']", "**************") # Lembrar sempre de mascarar a senha e o e-mail pro GitHub...
     pageBling.wait_for_timeout(2000)
-    pageBling.fill("input[id='senha']", "************")
+    pageBling.fill("input[id='senha']", "*************")
     pageBling.wait_for_timeout(2000)
     pageBling.click("button[name='enviar']")
     pageBling.wait_for_timeout(2000)
-    while (final < 11):
+    pageBling.click("xpath=//html/body/div[5]/div[1]/div/i")
+    pageBling.wait_for_timeout(2000)
+    # FILTRANDO POR DATA DE PERÍODO -->
+    # pageBling.click("xpath=//html/body/div[6]/div[4]/div[2]/div[1]/div[1]/div/div[2]/div[2]")
+    # pageBling.wait_for_timeout(2000)
+    # pageBling.fill("input[id='filtro-data-ini']", " ")
+    # pageBling.wait_for_timeout(2000)
+    # pageBling.fill("input[id='filtro-data-ini']", "04/07/2022")
+    # pageBling.wait_for_timeout(2000)
+    # pageBling.fill("input[id='filtro-data-fim']", "22/07/2022")
+    # pageBling.wait_for_timeout(2000)
+    # pageBling.click("xpath=//html/body/div[6]/div[4]/div[2]/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]")
+    while (final <= 10000):
         while (tableRow <= 100):
-            pageBling.locator(f"xpath=/html/body/div[5]/div[4]/div[2]/div[2]/table/tbody/tr[{tableRow}]/td[2]").click()
+            pageBling.click(f"xpath=/html/body/div[6]/div[4]/div[2]/div[2]/table/tbody/tr[{tableRow}]")
             pageBling.wait_for_timeout(2000)
             ufEmit = pageBling.input_value("select[id=cte_emit_UF]")
             ufRem = pageBling.input_value("select[id=cte_rem_UF]")
@@ -43,14 +55,13 @@ with sync_playwright() as p:
                 pageBling.click("button[id='botaoCancelar']")
                 pageBling.wait_for_timeout(2000)
                 tableRow += 1
-                if(final == 10):
+                if(final == 10000):
                     break
-                print(final)
         pageBling.wait_for_timeout(2000)
-        pageBling.locator("//html/body/div[5]/div[4]/div[2]/div[2]/nav/ul/li[4]/span").click()
+        pageBling.click("xpath=//html/body/div[6]/div[4]/div[2]/div[2]/nav/ul/li[4]/span/span[1]")
         tableRow = 1
         pageBling.wait_for_timeout(2000)
         
     # finalizando quando ele encontrar 5 CFOP's corretos
-    pageBling.wait_for_timeout(2000)
+    pageBling.wait_for_timeout(2000) 
     pageBling.close()
